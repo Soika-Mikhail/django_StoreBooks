@@ -1,0 +1,36 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+
+{% if form.errors %}
+    <p>Ваши имя пользователя и/или пароль не совпали. Поробууйте ещё раз.</p>
+{% endif %}
+
+{% if next %}
+    {% if users.is_authenticated %}
+        <p>Вы не имеете доступа к этой странице. Войдите в систему с другими параметрами.</p>
+    {% else %}
+        <p> Войдите в систему, чтобы увидеть эту страницу.</p>
+    {% endif %}
+{% endif %}
+
+<form method = "post" action = "{% url 'login' %}">
+    {% csrf_token %}
+    <table>
+        <tr>
+            <td>{{ form.useername.label_tag }}</td>
+            <td>{{ form.username }}</td>
+        </tr>
+        <tr>
+            <td>{{ form.password.label_tag }}</td>
+            <td>{{ form.password }}</td>
+        </tr>
+    </table>
+
+    <input type = "submit" value = "Вход"/>
+    <input type = "hidden" name = "next" value = "{{ next }}"/>
+</form>
+
+{# ПРедпологается, что Вы настроили представление password_reset в своём URLconf #}
+<p><a href = "{% url 'password_reset' %}">Утерян пароль?</a></p>
+{% endblock %}
