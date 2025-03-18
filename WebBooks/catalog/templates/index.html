@@ -1,0 +1,21 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<h1>Main page</h1>
+
+    <p>Welcom to <em>"World of Books"</em>. This a very simple website written in Django. Developed in Python
+    as a learning example using PyCharm</p>
+<h2> Dinamic content</h2>
+    <p>База Данных сайта World of Books содержит следующее
+    количество записей: </p>
+    <ul>
+        <li><strong>Количество книг: </strong>{{ num_books }}</li>
+        <li><strong>Количество экземпляров книг:
+            </strong> {{ num_instances }}</li>
+        <li><strong>Количество экземпляров книг в заказе:
+            </strong> {{ num_instances_available }}</li>
+        <li><strong>Количество авторов книг:
+            </strong> {{ num_authors }}</li>
+    </ul>
+<p>Количество посещений данной страницы - {{num_visits }}</p>
+{% endblock %}
