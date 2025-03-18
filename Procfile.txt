@@ -1,0 +1,1 @@
+web: gunicorn webbok.wsgi --log-file -
